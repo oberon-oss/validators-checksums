@@ -1,3 +1,20 @@
+## Build status:
+
+[![Quality gate status](https://sonarcloud.io/api/project_badges/measure?project=oberon-oss_validators-checksums&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=oberon-oss_validators-checksums)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=oberon-oss_validators-checksums&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=oberon-oss_validators-checksums)
+
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=oberon-oss_validators-checksums&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=oberon-oss_validators-checksums)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=oberon-oss_validators-checksums&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=oberon-oss_validators-checksums)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=oberon-oss_validators-checksums&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=oberon-oss_validators-checksums)
+
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=oberon-oss_validators-checksums&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=oberon-oss_validators-checksums)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=oberon-oss_validators-checksums&metric=bugs)](https://sonarcloud.io/summary/new_code?id=oberon-oss_validators-checksums)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=oberon-oss_validators-checksums&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=oberon-oss_validators-checksums)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=oberon-oss_validators-checksums&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=oberon-oss_validators-checksums)
+
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=oberon-oss_validators-checksums&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=oberon-oss_validators-checksums)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=oberon-oss_validators-checksums&metric=coverage)](https://sonarcloud.io/summary/new_code?id=oberon-oss_validators-checksums)
+
 # Checksum Validators (`validators-checksums`)
 
 A lightweight, extensible Java library for computing checksums and validating checksum-based identifiers (such as BSN, IBAN, ISBN-10, and ISBN-13).
