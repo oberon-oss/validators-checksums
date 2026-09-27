@@ -18,7 +18,7 @@
         <!--suppress XmlUnresolvedReference -->
         <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
         <argLine/>
-        <sonar.projectkey>oberon-oss_validators-checksums</sonar.projectkey>
+        <sonar.projectKey>oberon-oss_validators-checksums</sonar.projectKey>
     </properties>
 
     <dependencies>
