@@ -4,6 +4,24 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 
+/**
+ * The {@code ChecksumCalculator} interface defines a generic contract for performing checksum calculation on input data.
+ * <p>
+ * The process consists of the following steps:
+ * <ul>
+ * <li>preprocessing</li>
+ * <li>conversion</li>
+ * <li>validation</li>
+ * <li>checksum computation</li>
+ * </ul>
+ *
+ * @param <S> The source input type before preprocessing and conversion.
+ * @param <T> The target type after preprocessing and conversion, on which checksum validation occurs.
+ * @param <V> The type of the computed checksum result.
+ *
+ * @author TigerLilly64
+ * @since 1.0.0
+ */
 public interface ChecksumCalculator<S, T, V> {
 
     /**
@@ -41,6 +59,7 @@ public interface ChecksumCalculator<S, T, V> {
      * @since 1.0.0
      */
     Predicate<T> inputDataValidator();
+
     /**
      * Validates the checksum of the input data AFTER the conversion operation (#converter).
      *

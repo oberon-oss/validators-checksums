@@ -18,25 +18,21 @@ import java.util.regex.Pattern;
  * <p>
  * Key features of this class:
  * <p>
+ * 1. IBAN Preprocessing:
  * <ul>
- * <li>1. IBAN Preprocessing:
- * <ul
  * <li> Removes any whitespace from the input string and converts it to uppercase.</li>
  * <li> Rearranges the IBAN structure by moving its first four characters (country code and check digits) to the end.</li>
  * <li> Converts alphabetic characters to numbers according to IBAN standards (A=10, B=11, ..., Z=35).</li>
  * </ul>
- * </li>
- * <li>2. Validation:
+ * <p>
+ * 2. Validation:
  * <ul>
  * <li> Ensures that the IBAN format conforms to the general standard (2 uppercase letters, followed by 2 digits, followed by alphanumeric characters).</li>
  * <li> Validates the country-specific IBAN length using definitions from the {@link IBANCodeTable}.</li>
  * </ul>
- * </li>
- * <li>3. Checksum Calculation:
+ * 3. Checksum Calculation:
  * <ul>
  * <li> Uses the modulus 97 operation to compute the checksum as per the IBAN specification.</li>
- * </ul>
- * </li>
  * </ul>
  * Note that any inconsistency in the input (e.g., incorrect format or mismatched length) results in preprocessing returning an empty string, indicating an
  * invalid IBAN.

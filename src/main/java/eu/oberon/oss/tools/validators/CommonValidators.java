@@ -27,14 +27,38 @@ import static eu.oberon.oss.tools.checksums.AbstractChecksumCalculator.getCalcul
  * @since 1.0.0
  */
 public enum CommonValidators implements Validator<String> {
+    /**
+     * A validator for the Dutch "Burgerservicenummer" (BSN), which is a citizen service number.
+     *
+     * @since 1.0.0
+     */
     BSN((remainder, _) -> remainder % 11 == 0),
+    /**
+     * A validator for the International Bank Account Number (IBAN), which is a standardized format for identifying bank accounts across national borders.
+     *
+     * @since 1.0.0
+     */
     IBAN((remainder, _) -> remainder == 1),
+    /**
+     * A validator for the International Standard Book Number (ISBN), which is a unique numeric commercial book identifier.
+     * <p>
+     * This validator is intended for the 10-digit ISBN format.
+     *
+     * @since 1.0.0
+     */
     ISBN10((remainder, value) -> {
         int calculatedCheckDigit = (11 - (remainder % 11)) % 11;
         String lastDigit = value.substring(value.length() - 1);
         int actualCheckDigit = lastDigit.contentEquals("X") ? 10 : Integer.parseInt(lastDigit);
         return calculatedCheckDigit == actualCheckDigit;
     }),
+    /**
+     * A validator for the International Standard Book Number (ISBN), which is a unique numeric commercial book identifier.
+     * <p>
+     * This validator is intended for the 13-digit ISBN format.
+     *
+     * @since 1.0.0
+     */
     ISBN13((remainder, value) -> {
         int calculatedCheckDigit = (10 - (remainder % 10)) % 10;
         int actualCheckDigit = Integer.parseInt(value.substring(value.length() - 1));
