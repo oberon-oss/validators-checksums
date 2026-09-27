@@ -9,6 +9,7 @@ A lightweight, extensible Java library for computing checksums and validating ch
 Add the dependency to your `pom.xml`:
 
 ```xml
+
 <dependency>
     <groupId>eu.oberon-oss.tools</groupId>
     <artifactId>validators-checksums</artifactId>
@@ -24,12 +25,14 @@ The library is designed around modular components that separate preprocessing, d
 
 * **`Validator<T>`**: Generic interface representing a validation contract with a single method: `boolean validate(T value)`.
 * **`ChecksumCalculator<S, T, V>`**: Functional interface defining the 4-stage calculation pipeline:
-  * `preProcessor()` (`UnaryOperator<S>`): Cleans and normalizes input before conversion (e.g. stripping spaces or formatting).
-  * `converter()` (`Function<S, T>`): Transforms the raw source type `<S>` into target type `<T>`.
-  * `inputDataValidator()` (`Predicate<T>`): Validates converted input format before calculating checksum.
-  * `checksumCalculator()` (`Function<T, V>`): Computes the checksum result of type `<V>`.
-* **`AbstractChecksumCalculator<S, T, V>`**: Base implementation of `ChecksumCalculator` providing automatic service discovery (`ServiceLoader`) and static lookup methods (`getCalculator()`, `getInstance()`, `reload()`).
-* **`DefaultValidator`**: Standard implementation of `Validator<String>` combining a `ChecksumCalculator<String, String, Integer>` with a `BiPredicate<Integer, String>` to determine checksum correctness.
+    * `preProcessor()` (`UnaryOperator<S>`): Cleans and normalizes input before conversion (e.g., stripping spaces or formatting).
+    * `converter()` (`Function<S, T>`): Transforms the raw source type `<S>` into target type `<T>`.
+    * `inputDataValidator()` (`Predicate<T>`): Validates the converted input format before calculating checksum.
+    * `checksumCalculator()` (`Function<T, V>`): Computes the checksum result of type `<V>`.
+* **`AbstractChecksumCalculator<S, T, V>`**: Base implementation of `ChecksumCalculator` providing automatic service discovery (`ServiceLoader`) and static
+  lookup methods (`getCalculator()`, `getInstance()`, `reload()`).
+* **`DefaultValidator`**: Standard implementation of `Validator<String>` combining a `ChecksumCalculator<String, String, Integer>` with a
+  `BiPredicate<Integer, String>` to determine checksum correctness.
 * **`CommonValidators`**: Predefined enum implementing `Validator<String>` for out-of-the-box validation of common identifier formats.
 
 ---
@@ -44,26 +47,26 @@ import eu.oberon.oss.tools.validators.CommonValidators;
 // Dutch BSN (Burgerservicenummer)
 boolean isBsnValid = CommonValidators.BSN.validate("959975044");
 
-// IBAN
-boolean isIbanValid = CommonValidators.IBAN.validate("NL91ABNA0417164300");
+        // IBAN
+        boolean isIbanValid = CommonValidators.IBAN.validate("NL91ABNA0417164300");
 
-// ISBN-10
-boolean isIsbn10Valid = CommonValidators.ISBN10.validate("0-306-40615-2");
+        // ISBN-10
+        boolean isIsbn10Valid = CommonValidators.ISBN10.validate("0-306-40615-2");
 
-// ISBN-13
-boolean isIsbn13Valid = CommonValidators.ISBN13.validate("978-0-306-40615-7");
+        // ISBN-13
+        boolean isIsbn13Valid = CommonValidators.ISBN13.validate("978-0-306-40615-7");
 ```
 
 ---
 
 ## Available Calculators and Validators
 
-| Identifier | Calculator Class | Registered Name | Validation Rule |
-| :--- | :--- | :--- | :--- |
-| **BSN** | `BSNChecksumCalculator` | `"BSN"` | 9-digit Dutch BSN using the 11-proof (modulus 11) algorithm with weight vector `[9, 8, 7, 6, 5, 4, 3, 2, -1]`. |
-| **IBAN** | `IBANChecksumCalculator` | `"IBAN"` | ISO 13616 / MOD-97-10 check with country-specific length verification via `IBANCodeTable`. |
-| **ISBN-10** | `ISBN10ChecksumCalculator` | `"ISBN10"` | 10-digit ISBN weighted sum with check digit calculation (supports trailing `X` as 10). |
-| **ISBN-13** | `ISBN13ChecksumCalculator` | `"ISBN13"` | 13-digit ISBN starting with `978` or `979`, using alternating 1/3 weighted sum over the first 12 digits. |
+| Identifier  | Calculator Class           | Registered Name | Validation Rule                                                                                                |
+|:------------|:---------------------------|:----------------|:---------------------------------------------------------------------------------------------------------------|
+| **BSN**     | `BSNChecksumCalculator`    | `"BSN"`         | 9-digit Dutch BSN using the 11-proof (modulus 11) algorithm with weight vector `[9, 8, 7, 6, 5, 4, 3, 2, -1]`. |
+| **IBAN**    | `IBANChecksumCalculator`   | `"IBAN"`        | ISO 13616 / MOD-97-10 check with country-specific length verification via `IBANCodeTable`.                     |
+| **ISBN-10** | `ISBN10ChecksumCalculator` | `"ISBN10"`      | 10-digit ISBN weighted sum with check digit calculation (supports trailing `X` as 10).                         |
+| **ISBN-13** | `ISBN13ChecksumCalculator` | `"ISBN13"`      | 13-digit ISBN starting with `978` or `979`, using alternating 1/3 weighted sum over the first 12 digits.       |
 
 ---
 
@@ -78,15 +81,17 @@ import eu.oberon.oss.tools.checksums.AbstractChecksumCalculator;
 import eu.oberon.oss.tools.checksums.ChecksumCalculator;
 
 // Lookup is case-insensitive
-ChecksumCalculator<String, String, Integer> calculator = 
-        AbstractChecksumCalculator.getCalculator("BSN");
+ChecksumCalculator<String, String, Integer> calculator = AbstractChecksumCalculator.getCalculator("BSN");
 
-// Direct pipeline execution
-String preprocessed = calculator.preProcessor().apply("959-975-044");
-String converted = calculator.converter().apply(preprocessed);
-if (calculator.inputDataValidator().test(converted)) {
-    Integer checksum = calculator.checksumCalculator().apply(converted);
-}
+        // Direct pipeline execution
+        String preprocessed = calculator.preProcessor().apply("959-975-044");
+        String converted = calculator.converter().apply(preprocessed);
+
+        void example() {
+            if (calculator.inputDataValidator().test(converted)) {
+                Integer checksum = calculator.checksumCalculator().apply(converted);
+            }
+        }
 ```
 
 ### 2. Composing Custom Validators with `DefaultValidator`
@@ -99,7 +104,7 @@ import eu.oberon.oss.tools.checksums.ChecksumCalculator;
 import eu.oberon.oss.tools.validators.DefaultValidator;
 import eu.oberon.oss.tools.validators.Validator;
 
-ChecksumCalculator<String, String, Integer> calculator = 
+ChecksumCalculator<String, String, Integer> calculator =
         AbstractChecksumCalculator.getCalculator("BSN");
 
 // Create custom validator with tailored predicate
@@ -129,7 +134,7 @@ public class CustomIdChecksumCalculator extends AbstractChecksumCalculator<Strin
         super(
                 "CUSTOM_ID",                                      // Calculator name
                 input -> input == null ? "" : input.trim(),       // Preprocessor
-                input -> input.replaceAll("-", ""),               // Converter
+                input -> input.replace("-", ""),               // Converter
                 input -> PATTERN.matcher(input).matches(),        // Input validator
                 input -> {                                        // Checksum calculation
                     int sum = 0;
@@ -145,7 +150,8 @@ public class CustomIdChecksumCalculator extends AbstractChecksumCalculator<Strin
 
 #### Registering via Service Provider Interface (SPI)
 
-To make your calculator discoverable by `AbstractChecksumCalculator.getCalculator("CUSTOM_ID")`, register it in `META-INF/services/eu.oberon.oss.tools.checksums.ChecksumCalculator`:
+To make your calculator discoverable by `AbstractChecksumCalculator.getCalculator("CUSTOM_ID")`, register it in
+`META-INF/services/eu.oberon.oss.tools.checksums.ChecksumCalculator`:
 
 ```
 com.example.CustomIdChecksumCalculator

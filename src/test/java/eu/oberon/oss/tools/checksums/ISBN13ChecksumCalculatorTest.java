@@ -36,9 +36,7 @@ class ISBN13ChecksumCalculatorTest {
         );
     }
 
-    static StringBuilder stringBuilder;
-
-    ChecksumCalculator<String, String, Integer> calculator = new ISBN13ChecksumCalculator();
+    private final ChecksumCalculator<String, String, Integer> calculator = new ISBN13ChecksumCalculator();
 
     @ParameterizedTest
     @MethodSource
