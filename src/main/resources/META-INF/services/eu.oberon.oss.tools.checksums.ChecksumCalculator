@@ -1,0 +1,4 @@
+eu.oberon.oss.tools.checksums.BSNChecksumCalculator
+eu.oberon.oss.tools.checksums.IBANChecksumCalculator
+eu.oberon.oss.tools.checksums.ISBN10ChecksumCalculator
+eu.oberon.oss.tools.checksums.ISBN13ChecksumCalculator
