@@ -10,8 +10,7 @@ on:
 
 jobs:
     pipeline:
-        #     v2.0.1
-        uses: oberon-oss/github-workflows/.github/workflows/maven-pipeline.yml@18394ff206a3269a6904a48e5ea876a8e6cb6f5b
+        uses: oberon-oss/github-workflows/.github/workflows/maven-pipeline.yml@v2.02
         secrets:
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
             NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
