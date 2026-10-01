@@ -12,8 +12,9 @@
 
     <groupId>eu.oberon-oss.tools</groupId>
     <artifactId>validators-checksums</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <url>https://github.com/${github-organization-name}/${project.artifactId}</url>
+    <description>A collection of checksum validation tools</description>
 
     <properties>
         <!--suppress XmlUnresolvedReference -->
