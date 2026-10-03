@@ -6,13 +6,14 @@
 
     <parent>
         <groupId>eu.oberon-oss</groupId>
-        <artifactId>boms</artifactId>
-        <version>3.25.12</version>
+        <artifactId>project-settings-parent</artifactId>
+        <version>4.25.3</version>
     </parent>
 
     <groupId>eu.oberon-oss.tools</groupId>
     <artifactId>validators-checksums</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
+
     <url>https://github.com/${github-organization-name}/${project.artifactId}</url>
     <description>A collection of checksum validation tools</description>
 
@@ -32,7 +33,7 @@
         <dependency>
             <groupId>eu.oberon-oss.tools</groupId>
             <artifactId>code-tables</artifactId>
-            <version>2.1.0</version>
+            <version>2.1.1</version>
         </dependency>
     </dependencies>
 
